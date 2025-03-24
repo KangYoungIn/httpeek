@@ -39,27 +39,81 @@ go build -o httpeek cmd/main.go
 
 ### 옵션
 
-| 옵션 | 설명 |
-|-----------------------|----------------------------------|
-| `-X, --method`        | HTTP 메서드 지정 (기본: GET)     |
-| `-H, --header`        | 요청 헤더 지정 (복수 가능)       |
-| `--body`              | 요청 Body 내용 (JSON 등)         |
-| `--show-headers`      | 응답 헤더 출력                   |
-| `--show-body`         | 응답 Body 출력                   |
-| `--api`               | API 서버 모드로 실행             |
-| `--port`              | API 서버 포트 (기본: 8080)       |
+| 옵션                   | 설명                                          |
+|------------------------|-----------------------------------------------|
+| `-X, --method`         | HTTP 메서드 지정 (기본: GET)                   |
+| `-H, --header`         | 요청 헤더 지정 (복수 지정 가능)                |
+| `--body`               | 요청 본문 (POST, PUT 등에서 사용)              |
+| `--show-headers`       | 응답 헤더 출력                                 |
+| `--show-body`          | 응답 Body 출력                                 |
+| `--api`                | API 서버 모드로 실행                           |
+| `--port`               | API 서버 포트 지정 (기본: 8080)                |
+
+---
 
 ### 단일 URL 추적
 ```bash
 ./httpeek https://example.com
 ```
 
+---
+
 ### 다중 URL 추적
 ```bash
 ./httpeek https://example.com https://github.com
 ```
 
-### CLI 실행 결과 예시
+---
+
+### POST 요청 + JSON 바디
+```bash
+./httpeek -X POST \
+  -H "Content-Type: application/json" \
+  --body '{"hello":"world"}' \
+  https://httpbin.org/post
+```
+
+---
+
+### 응답 헤더 출력
+```bash
+./httpeek --show-headers https://github.com
+```
+
+---
+
+### 응답 Body 출력
+```bash
+./httpeek --show-body https://httpbin.org/get
+```
+
+---
+
+### 다중 헤더 지정
+```bash
+./httpeek \
+  -H "User-Agent: httpeek" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  https://api.example.com
+```
+
+---
+
+### API 서버 모드 실행 (기본 포트: 8080)
+```bash
+./httpeek --api
+```
+
+---
+
+### API 서버 실행 (포트 지정)
+```bash
+./httpeek --api --port 9090
+```
+
+---
+
+### 🔹 CLI 실행 결과 예시
 ```bash
 $ ./httpeek --show-headers https://github.com
 ==================================================

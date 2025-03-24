@@ -9,14 +9,6 @@
 
 ---
 
-## 설치
-
-```bash
-go build -o httpeek cmd/main.go
-```
-
----
-
 ## 주요 용도
 
 `httpeek`은 다음과 같은 상황에서 유용하게 사용할 수 있습니다.
@@ -32,10 +24,30 @@ go build -o httpeek cmd/main.go
 
 단, 클라이언트 기준의 요청 흐름만 추적 가능하며, 백엔드 내부 로직이나 서버 간 통신 흐름은 포함되지 않습니다.
 
+---
+
+## 설치
+
+```bash
+go mod tidy
+go build -o httpeek cmd/main.go
+```
 
 ---
 
 ## 사용 예시 (CLI)
+
+### 옵션
+
+| 옵션 | 설명 |
+|-----------------------|----------------------------------|
+| `-X, --method`        | HTTP 메서드 지정 (기본: GET)     |
+| `-H, --header`        | 요청 헤더 지정 (복수 가능)       |
+| `--body`              | 요청 Body 내용 (JSON 등)         |
+| `--show-headers`      | 응답 헤더 출력                   |
+| `--show-body`         | 응답 Body 출력                   |
+| `--api`               | API 서버 모드로 실행             |
+| `--port`              | API 서버 포트 (기본: 8080)       |
 
 ### 단일 URL 추적
 ```bash

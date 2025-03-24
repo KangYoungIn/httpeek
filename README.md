@@ -113,7 +113,7 @@ go build -o httpeek cmd/main.go
 
 ---
 
-### 🔹 CLI 실행 결과 예시
+### CLI 실행 결과 예시
 ```bash
 $ ./httpeek --show-headers https://github.com
 ==================================================
